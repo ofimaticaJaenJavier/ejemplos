@@ -1,0 +1,19 @@
+<ion-view title="{{ 'ht' | translate }}">
+    <ion-nav-buttons side="right">
+	<button class="button button-clear" ng-click="ChangeLanguage('en')">EN</button>
+	<button class="button button-clear" ng-click="ChangeLanguage('de')">DE</button>
+    <button class="button button-clear" ng-click="DetectarIdioma()">DETECTAR IDIOMA</button>
+</ion-nav-buttons>
+	<ion-content padding="true">
+	  <p>{{ 'hp1' | translate }}</p>
+	  <p translate="hp2"></p>
+      <p>window.navigator.language {{idiomaNavegador}}</p>
+      <p>window.navigator.userLanguage {{idiomaOtroMetodo}}</p>
+      <p>navigator.userLanguage {{idiomaOtroMetodo2}}</p>
+      <p>navigator.language {{scope.idiomaOtroMetodo3}}</p>
+      <p>window.navigator.language {{idiomaNavegador}}</p>
+
+	</ion-content>
+  </ion-view>
+
+  

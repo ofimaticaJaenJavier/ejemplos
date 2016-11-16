@@ -4,7 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+
+
+angular.module('starter', ['ionic', 'starter.controllers','pascalprecht.translate'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,7 +24,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$translateProvider) {
+
+  for(lang in translations){
+		$translateProvider.translations(lang, translations[lang]);
+	}
+	
+	$translateProvider.preferredLanguage('en');
+
+  
   $stateProvider
 
     .state('app', {
@@ -59,6 +69,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+    .state('app.translatePrueba', {
+      url: '/translatePrueba',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/translatePrueba.html',
+          controller: 'MainCtrl'
+        }
+      }
+    })
+
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {
@@ -70,4 +90,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
+})
+
+.controller('MainCtrl', function($scope, $translate) {
+ 
+  
+  $scope.ChangeLanguage = function(lang){
+		$translate.use(lang);
+	  }
+
+  $scope.DetectarIdioma = function(){
+    $scope.idiomaNavegador = window.navigator.language;
+    $scope.idiomaOtroMetodo = window.navigator.userLanguage;
+    $scope.idiomaOtroMetodo2 = navigator.userLanguage;
+    $scope.idiomaOtroMetodo3 = navigator.language;
+    
+  }
 });
