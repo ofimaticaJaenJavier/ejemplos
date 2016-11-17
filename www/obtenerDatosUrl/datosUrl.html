@@ -1,0 +1,14 @@
+<ion-view>
+    <ion-content>
+
+        <div class="list">
+            <a class="item item-avatar" ng-repeat="item in resultado">
+                <img ng-src="http://ofimenutesting.cloudapp.net{{item.Imagen}}">
+                <h2>{{item.Nombre}}</h2>
+                <p>{{item.Codigo}}</p>
+            </a>
+        </div>
+        <button class="button button-positive">pop Up</button>
+
+    </ion-content>
+</ion-view>

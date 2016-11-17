@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 
 
-angular.module('starter', ['ionic', 'starter.controllers','pascalprecht.translate'])
+angular.module('starter', ['ionic', 'starter.controllers','PrincipalMod','Traduccion'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers','pascalprecht.translat
 })
 
 .config(function($stateProvider, $urlRouterProvider,$translateProvider) {
-
+//config para traduccio
   for(lang in translations){
 		$translateProvider.translations(lang, translations[lang]);
 	}
@@ -69,12 +69,23 @@ angular.module('starter', ['ionic', 'starter.controllers','pascalprecht.translat
       }
     })
 
+
+    .state('app.obtenerDatosUrl', {
+      url: '/obtenerDatosUrl',
+      views: {
+        'menuContent': {
+          templateUrl: 'obtenerDatosUrl/datosUrl.html',
+          controller: 'PrincipalCtrl'
+        }
+      }
+    })
+
     .state('app.translatePrueba', {
       url: '/translatePrueba',
       views: {
         'menuContent': {
-          templateUrl: 'templates/translatePrueba.html',
-          controller: 'MainCtrl'
+          templateUrl: 'traduccion/translatePrueba.html',
+          controller: 'TraduccionCtrl'
         }
       }
     })
@@ -92,18 +103,3 @@ angular.module('starter', ['ionic', 'starter.controllers','pascalprecht.translat
   $urlRouterProvider.otherwise('/app/playlists');
 })
 
-.controller('MainCtrl', function($scope, $translate) {
- 
-  
-  $scope.ChangeLanguage = function(lang){
-		$translate.use(lang);
-	  }
-
-  $scope.DetectarIdioma = function(){
-    $scope.idiomaNavegador = window.navigator.language;
-    $scope.idiomaOtroMetodo = window.navigator.userLanguage;
-    $scope.idiomaOtroMetodo2 = navigator.userLanguage;
-    $scope.idiomaOtroMetodo3 = navigator.language;
-    
-  }
-});
